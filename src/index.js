@@ -77,7 +77,7 @@ octokit
     username: githubUsername,
   })
   .then((user) => {
-    const githubUserType = user.data.type;
+    const githubUserType = "User";
 
     switch (githubUserType) {
       case "Organization":
