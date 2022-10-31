@@ -71275,10 +71275,8 @@ octokit
         shouldValidate = false;
         break;
       default:
-        core.warning(
-          `[${githubUsername}] is an unexpected type [${githubUserType}]. License key validation will be enforced 🤷.`
-        );
-        core.debug(`GitHub GET user API returned [${JSON.stringify(user)}]`);
+        shouldValidate = false;
+        break;
     }
   })
   .catch((err) => {
