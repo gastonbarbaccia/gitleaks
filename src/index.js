@@ -81,15 +81,9 @@ octokit
 
     switch (githubUserType) {
       case "Organization":
-        core.info(
-          `[${githubUsername}] is an organization. License key is required.`
-        );
         shouldValidate = false;
         break;
       case "User":
-        core.info(
-          `[${githubUsername}] is an individual user. No license key is required.`
-        );
         shouldValidate = false;
         break;
       default:
