@@ -71301,7 +71301,6 @@ octokit
         `[${githubUsername}] is an individual user. No license key is required.`
       );
       shouldValidate = false;
-      break;
 
     start();
   });
