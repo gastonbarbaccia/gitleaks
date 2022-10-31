@@ -81,13 +81,13 @@ octokit
 
     switch (githubUserType) {
       case "Organization":
-        shouldValidate = false;
+        shouldValidate = true;
         break;
       case "User":
-        shouldValidate = false;
+        shouldValidate = true;
         break;
       default:
-        shouldValidate = false;
+        shouldValidate = true;
         break;
         
     }
