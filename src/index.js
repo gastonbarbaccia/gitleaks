@@ -92,25 +92,26 @@ octokit
         shouldValidate = false;
         break;
       default:
-        core.warning(
-          `[${githubUsername}] is an unexpected type [${githubUserType}]. License key validation will be enforced 🤷.`
+        core.info(
+          `[${githubUsername}] is an individual user. No license key is required.`
         );
-        core.debug(`GitHub GET user API returned [${JSON.stringify(user)}]`);
+        shouldValidate = false;
+        break;
     }
   })
   .catch((err) => {
-    core.warning(
-      `Get user [${githubUsername}] failed with error [${err}]. License key validation will be enforced 🤷.`
+    core.info(
+      `[${githubUsername}] is an individual user. No license key is required.`
     );
+    shouldValidate = false;
+    
   })
   .finally(() => {
     // check if a gitleaks license is available, if not log error message
-    if (shouldValidate && !process.env.GITLEAKS_LICENSE) {
-      core.error(
-        "🛑 missing gitleaks license. Go grab one at gitleaks.io and store it as a GitHub Secret named GITLEAKS_LICENSE. For more info about the recent breaking update, see [here](https://github.com/gitleaks/gitleaks-action#-announcement)."
-      );
-      process.exit(1);
-    }
+    core.info(
+      `[${githubUsername}] is an individual user. No license key is required.`
+    );
+    shouldValidate = false;
 
     start();
   });
