@@ -108,10 +108,12 @@ octokit
   })
   .finally(() => {
     // check if a gitleaks license is available, if not log error message
-    core.info(
-      `[${githubUsername}] is an individual user. No license key is required.`
+   if (shouldValidate && !process.env.GITLEAKS_LICENSE) {
+    core.error(
+      "🛑 missing gitleaks license. Go grab one at gitleaks.io and store it as a GitHub Secret named GITLEAKS_LICENSE. For more info about the recent breaking update, see [here](https://github.com/gitleaks/gitleaks-action#-announcement)."
     );
-    shouldValidate = false;
+    process.exit(1);
+  }
 
     start();
   });
